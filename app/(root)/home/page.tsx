@@ -16,14 +16,12 @@ export default function Home() {
     <div className="p-6">
       <h1 className="text-3xl font-bold mb-6">Movie Collection</h1>
 
-      {/* Movie Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {movies.map((movie:Movie, index) => (
+        {movies.map((movie: Movie, index) => (
           <div
             key={index}
             className="card bg-base-200 shadow-xl rounded-xl overflow-hidden"
           >
-            {/* Image */}
             <figure>
               <img
                 src={movie.img}
@@ -32,24 +30,20 @@ export default function Home() {
               />
             </figure>
 
-            {/* Card Body */}
             <div className="card-body">
               <h2 className="card-title text-lg font-bold">{movie.title}</h2>
 
               <p className="text-sm opacity-80">{movie.description}</p>
 
-              {/* Rating + Runtime */}
               <div className="flex justify-between mt-4 text-sm opacity-75">
                 <p>⭐ {movie.rating}</p>
                 <p>⏱ {movie.runtime} min</p>
               </div>
 
-              {/* Director(s) */}
               <p className="text-xs mt-2 opacity-60">
                 Directed by: {movie.directors}
               </p>
 
-              {/* Button */}
               <div className="card-actions mt-4">
                 <button className="btn btn-primary btn-sm w-full">
                   View Details
