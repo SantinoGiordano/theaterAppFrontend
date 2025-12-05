@@ -13,7 +13,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="p-6">
+    <div className=" bg-black p-6">
       <h1 className="text-3xl font-bold mb-6">Movie Collection</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -30,7 +30,7 @@ export default function Home() {
               />
             </figure>
 
-            <div className="card-body">
+            <div className="bg-white card-body p-3">
               <h2 className="card-title text-lg font-bold">{movie.title}</h2>
 
               <p className="text-sm opacity-80">{movie.description}</p>
