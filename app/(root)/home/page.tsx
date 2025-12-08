@@ -25,13 +25,13 @@ export default function Home() {
             <figure>
               <img
                 src={movie.img}
-                alt={movie.title}
+                alt={movie.name}
                 className="w-full h-60 object-cover"
               />
             </figure>
 
             <div className="bg-white card-body p-3">
-              <h2 className="card-title text-lg font-bold">{movie.title}</h2>
+              <h2 className="card-title text-lg font-bold">{movie.name}</h2>
 
               <p className="text-sm opacity-80">{movie.description}</p>
 
@@ -40,8 +40,11 @@ export default function Home() {
                 <p>⏱ {movie.runtime} min</p>
               </div>
 
+              <p className="text-s opacity-70">
+              Movie Name: {movie.name}
               <p className="text-xs mt-2 opacity-60">
                 Directed by: {movie.directors}
+              </p>
               </p>
 
               <div className="card-actions mt-4">
