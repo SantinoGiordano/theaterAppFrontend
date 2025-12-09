@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <div className="bg-black p-6 min-h-screen">
       <h1 className="text-4xl font-extrabold mb-6 text-white tracking-tight">
-       Movie Collection
+        Movie Collection
       </h1>
 
       {/* Movies Grid */}
@@ -24,17 +24,17 @@ export default function Home() {
         {movies.map((movie: Movie, index) => (
           <div
             key={index}
-            className="card bg-base-200 shadow-xl rounded-xl overflow-hidden transform transition hover:scale-105 hover:shadow-2xl"
+            className="card bg-base-200 shadow-xl rounded-xl overflow-hidden flex flex-col"
           >
             <figure>
               <img
                 src={movie.img}
                 alt={movie.name}
-                className="w-full h-60 object-cover transition-all duration-300 hover:brightness-110"
+                className="w-full h-60 object-cover"
               />
             </figure>
 
-            <div className="bg-white card-body p-4">
+            <div className="bg-white card-body p-4 flex-1 flex flex-col">
               <h2 className="card-title text-lg font-bold">{movie.name}</h2>
 
               <p className="text-sm opacity-80 line-clamp-3">
@@ -50,9 +50,10 @@ export default function Home() {
                 Directed by: {movie.directors.join(", ")}
               </p>
 
-              <div className="card-actions mt-4">
+              {/* Push button to bottom */}
+              <div className="mt-auto pt-4">
                 <button
-                  className="p-2 btn bg-black/70 text-white btn-sm w-full shadow-md hover:shadow-lg rounded-xl"
+                  className="btn p-2 bg-black text-white btn-sm w-full shadow-md hover:shadow-lg rounded-xl"
                   onClick={() => setSelectedMovie(movie)}
                 >
                   View Showtime
@@ -69,13 +70,13 @@ export default function Home() {
           <div className="bg-white/90 backdrop-blur-lg p-6 rounded-2xl w-80 shadow-2xl animate-slideUp relative">
             {/* Close Button */}
             <button
-              className="absolute top-3 right-3 btn btn-circle btn-sm bg-red-500 text-white hover:bg-red-600"
+              className="on:hover cursor-pointer absolute top-3 right-3 bg-red-500 text-white hover:bg-red-600 rounded-full w-9 h-9 flex items-center justify-center shadow-md"
               onClick={() => setSelectedMovie(null)}
             >
               ✕
             </button>
 
-            <h2 className="text-2xl font-bold mb-4 text-center">
+            <h2 className="pt-5 text-2xl font-bold mb-4 text-center">
               {selectedMovie.name} Showtimes
             </h2>
 
@@ -89,18 +90,10 @@ export default function Home() {
                 </div>
               ))}
             </div>
-
-            <button
-              className="btn btn-error btn-sm w-full mt-5"
-              onClick={() => setSelectedMovie(null)}
-            >
-              Close
-            </button>
           </div>
         </div>
       )}
 
-      {/* Tailwind Animations */}
       <style jsx>{`
         .animate-fadeIn {
           animation: fadeIn 0.3s ease-out;
