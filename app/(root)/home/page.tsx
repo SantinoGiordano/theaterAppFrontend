@@ -14,43 +14,45 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="bg-black p-6">
-      <h1 className="text-3xl font-bold mb-6">Movie Collection</h1>
+    <div className="bg-black p-6 min-h-screen">
+      <h1 className="text-4xl font-extrabold mb-6 text-white tracking-tight">
+       Movie Collection
+      </h1>
 
+      {/* Movies Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {movies.map((movie: Movie, index) => (
           <div
             key={index}
-            className="card bg-base-200 shadow-xl rounded-xl overflow-hidden"
+            className="card bg-base-200 shadow-xl rounded-xl overflow-hidden transform transition hover:scale-105 hover:shadow-2xl"
           >
             <figure>
               <img
                 src={movie.img}
                 alt={movie.name}
-                className="w-full h-60 object-cover"
+                className="w-full h-60 object-cover transition-all duration-300 hover:brightness-110"
               />
             </figure>
 
-            <div className="bg-white card-body p-3">
+            <div className="bg-white card-body p-4">
               <h2 className="card-title text-lg font-bold">{movie.name}</h2>
 
-              <p className="text-sm opacity-80">{movie.description}</p>
+              <p className="text-sm opacity-80 line-clamp-3">
+                {movie.description}
+              </p>
 
               <div className="flex justify-between mt-4 text-sm opacity-75">
                 <p>⭐ {movie.rating}</p>
                 <p>⏱ {movie.runtime} min</p>
               </div>
 
-              <div className="text-s opacity-70">
-                Movie Name: {movie.name}
-                <p className="text-xs mt-2 opacity-60">
-                  Directed by: {movie.directors}
-                </p>
-              </div>
+              <p className="text-xs mt-2 opacity-70">
+                Directed by: {movie.directors.join(", ")}
+              </p>
 
               <div className="card-actions mt-4">
                 <button
-                  className="btn btn-primary btn-sm w-full"
+                  className="p-2 btn bg-black/70 text-white btn-sm w-full shadow-md hover:shadow-lg rounded-xl"
                   onClick={() => setSelectedMovie(movie)}
                 >
                   View Showtime
@@ -63,22 +65,33 @@ export default function Home() {
 
       {/* Modal */}
       {selectedMovie && (
-        <div className="fixed inset-0 bg-black/80 flex justify-center items-center z-50">
-          <div className="bg-white p-6 rounded-xl w-80 shadow-xl">
-            <h2 className="text-xl font-bold mb-4">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-50 animate-fadeIn">
+          <div className="bg-white/90 backdrop-blur-lg p-6 rounded-2xl w-80 shadow-2xl animate-slideUp relative">
+            {/* Close Button */}
+            <button
+              className="absolute top-3 right-3 btn btn-circle btn-sm bg-red-500 text-white hover:bg-red-600"
+              onClick={() => setSelectedMovie(null)}
+            >
+              ✕
+            </button>
+
+            <h2 className="text-2xl font-bold mb-4 text-center">
               {selectedMovie.name} Showtimes
             </h2>
 
             <div className="flex flex-col gap-2">
-              {selectedMovie.showtimes.map((time: string, index: number) => (
-                <div key={index} className="p-2 bg-gray-200 rounded text-center">
+              {selectedMovie.showtimes.map((time, index) => (
+                <div
+                  key={index}
+                  className="px-4 py-2 bg-purple-100 text-purple-800 rounded-full text-center font-medium shadow-sm"
+                >
                   {time}
                 </div>
               ))}
             </div>
 
             <button
-              className="btn btn-error btn-sm w-full mt-4"
+              className="btn btn-error btn-sm w-full mt-5"
               onClick={() => setSelectedMovie(null)}
             >
               Close
@@ -86,6 +99,37 @@ export default function Home() {
           </div>
         </div>
       )}
+
+      {/* Tailwind Animations */}
+      <style jsx>{`
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out;
+        }
+
+        .animate-slideUp {
+          animation: slideUp 0.35s ease-out;
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </div>
   );
 }
