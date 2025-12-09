@@ -63,7 +63,7 @@ export default function Home() {
 
       {/* Modal */}
       {selectedMovie && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+        <div className="fixed inset-0 bg-black/80 flex justify-center items-center z-50">
           <div className="bg-white p-6 rounded-xl w-80 shadow-xl">
             <h2 className="text-xl font-bold mb-4">
               {selectedMovie.name} Showtimes
