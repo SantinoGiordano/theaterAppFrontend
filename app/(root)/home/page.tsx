@@ -40,12 +40,12 @@ export default function Home() {
                 <p>⏱ {movie.runtime} min</p>
               </div>
 
-              <p className="text-s opacity-70">
+              <div className="text-s opacity-70">
               Movie Name: {movie.name}
               <p className="text-xs mt-2 opacity-60">
                 Directed by: {movie.directors}
               </p>
-              </p>
+              </div>
 
               <div className="card-actions mt-4">
                 <button className="btn btn-primary btn-sm w-full">
