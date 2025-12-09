@@ -1,17 +1,21 @@
 "use client";
 
-import Navbar from "@/app/components/navbar";
 import { Movie } from "@/types/page";
 import { useEffect, useState } from "react";
 
 export default function Home() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("http://localhost:8080/api/movies")
       .then((res) => res.json())
-      .then((data) => setMovies(data));
+      .then((data) => {
+        setMovies(data);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
   }, []);
 
   return (
@@ -21,50 +25,56 @@ export default function Home() {
           Movie Collection
         </h1>
 
-        {/* Movies Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {movies.map((movie: Movie, index) => (
-            <div
-              key={index}
-              className="card bg-base-200 shadow-xl rounded-xl overflow-hidden flex flex-col"
-            >
-              <figure>
-                <img
-                  src={movie.img}
-                  alt={movie.name}
-                  className="w-full h-60 object-cover"
-                />
-              </figure>
+        {/* Loading Spinner */}
+        {loading ? (
+          <div className="flex justify-center items-center h-64">
+            <span className="loading loading-spinner loading-xl text-red-600"></span>
+          </div>
+        ) : (
+          /* Movies Grid */
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 animate-fadeIn">
+            {movies.map((movie, index) => (
+              <div
+                key={index}
+                className="card bg-base-200 shadow-xl rounded-xl overflow-hidden flex flex-col"
+              >
+                <figure>
+                  <img
+                    src={movie.img}
+                    alt={movie.name}
+                    className="w-full h-60 object-cover"
+                  />
+                </figure>
 
-              <div className="bg-white card-body p-4 flex-1 flex flex-col">
-                <h2 className="card-title text-lg font-bold">{movie.name}</h2>
+                <div className="bg-white card-body p-4 flex-1 flex flex-col">
+                  <h2 className="card-title text-lg font-bold">{movie.name}</h2>
 
-                <p className="text-sm opacity-80 line-clamp-3">
-                  {movie.description}
-                </p>
+                  <p className="text-sm opacity-80 line-clamp-3">
+                    {movie.description}
+                  </p>
 
-                <div className="flex justify-between mt-4 text-sm opacity-75">
-                  <p>⭐ {movie.rating}</p>
-                  <p>⏱ {movie.runtime} min</p>
-                </div>
+                  <div className="flex justify-between mt-4 text-sm opacity-75">
+                    <p>⭐ {movie.rating}</p>
+                    <p>⏱ {movie.runtime} min</p>
+                  </div>
 
-                <p className="text-xs mt-2 opacity-70">
-                  Directed by: {movie.directors.join(", ")}
-                </p>
+                  <p className="text-xs mt-2 opacity-70">
+                    Directed by: {movie.directors}
+                  </p>
 
-                {/* Push button to bottom */}
-                <div className="mt-auto pt-4">
-                  <button
-                    className="btn p-2 bg-red-600 text-white btn-sm w-full shadow-md hover:shadow-lg rounded-xl"
-                    onClick={() => setSelectedMovie(movie)}
-                  >
-                    View Showtime
-                  </button>
+                  <div className="mt-auto pt-4">
+                    <button
+                      className="btn p-2 bg-red-600 text-white btn-sm w-full shadow-md hover:shadow-lg rounded-xl"
+                      onClick={() => setSelectedMovie(movie)}
+                    >
+                      View Showtime
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
         {/* Modal */}
         {selectedMovie && (
@@ -72,7 +82,7 @@ export default function Home() {
             <div className="bg-white/90 backdrop-blur-lg p-6 rounded-2xl w-80 shadow-2xl animate-slideUp relative">
               {/* Close Button */}
               <button
-                className="on:hover cursor-pointer absolute top-3 right-3 bg-red-500 text-white hover:bg-red-600 rounded-full w-9 h-9 flex items-center justify-center shadow-md"
+                className="cursor-pointer absolute top-3 right-3 bg-red-500 text-white hover:bg-red-600 rounded-full w-9 h-9 flex items-center justify-center shadow-md"
                 onClick={() => setSelectedMovie(null)}
               >
                 ✕
@@ -96,6 +106,7 @@ export default function Home() {
           </div>
         )}
 
+        {/* Animations */}
         <style jsx>{`
           .animate-fadeIn {
             animation: fadeIn 0.3s ease-out;
