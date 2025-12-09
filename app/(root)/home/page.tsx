@@ -38,7 +38,7 @@ export default function Home() {
               <div className="flex justify-between mt-4 text-sm opacity-75">
                 <p>⭐ {movie.rating}</p>
                 <p>⏱ {movie.runtime} min</p>
-                <p>times: {movie.showtime}</p>
+                <p>times: {movie.showtimes}</p>
               </div>
 
               <div className="text-s opacity-70">

@@ -6,7 +6,7 @@ export interface Movie {
     releaseDate: string;
     rating: number;
     genre: string[];
-    showtime: string[];
+    showtimes: string[];
     directors: string;
     img?: string;
 }
