@@ -3,11 +3,12 @@
 
 import { Movie } from "@/types/page";
 import { useEffect, useState } from "react";
-
+import { useRouter } from "next/navigation";
 export default function MovieListing() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     fetch("http://localhost:8080/api/movies")
@@ -19,11 +20,15 @@ export default function MovieListing() {
       .catch(() => setLoading(false));
   }, []);
 
+  function HandleShowtimeSelection() {
+    router.push("/checkout");
+  }
+
   return (
     <>
       <div className="p-6 min-h-screen">
         <h1 className="text-4xl font-extrabold mb-6 text-red-600 tracking-tight">
-          Movie Collection
+          In Theaters
         </h1>
 
         {/* Loading Spinner */}
@@ -95,12 +100,13 @@ export default function MovieListing() {
 
               <div className="flex flex-col gap-2">
                 {selectedMovie.showtimes.map((time, index) => (
-                  <div
+                  <button
+                    onClick={()=>HandleShowtimeSelection()}
                     key={index}
-                    className="px-4 py-2 bg-blue-800 text-blue-100 rounded-full text-center font-medium shadow-sm"
+                    className="hover:cursor-pointer px-4 py-2 bg-blue-800 text-blue-100 rounded-full text-center font-medium shadow-sm"
                   >
                     {time}
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>
