@@ -72,13 +72,10 @@ export default function Navbar() {
             >
               Home
             </Link>
-            <Link className="hover:text-red-400 transition" href="/comingSoon">
-              Comming Soon
-            </Link>
             <Link
               onClick={() => setIsOpen(false)}
               className="hover:text-red-400"
-              href="/home"
+              href="/movies"
             >
               Movies
             </Link>
@@ -88,6 +85,9 @@ export default function Navbar() {
               href="/foodItems"
             >
               Food and Drinks
+            </Link>
+            <Link className="hover:text-red-400 transition" href="/comingSoon">
+              Comming Soon
             </Link>
             <Link
               onClick={() => setIsOpen(false)}
