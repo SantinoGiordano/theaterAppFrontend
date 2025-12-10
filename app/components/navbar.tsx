@@ -47,7 +47,7 @@ export default function Navbar() {
               </Link>
             </li>
             <li>
-              <Link className="hover:text-red-400 transition" href="/contact">
+              <Link className="hover:text-red-400 transition" href="/">
                 Sign Out
               </Link>
             </li>
@@ -96,7 +96,7 @@ export default function Navbar() {
             >
               Contact
             </Link>
-            <Link className="hover:text-red-400 transition" href="/contact">
+            <Link className="hover:text-red-400 transition" href="/">
               Sign Out
             </Link>
           </div>
