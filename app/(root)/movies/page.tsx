@@ -4,7 +4,7 @@
 import { Movie } from "@/types/page";
 import { useEffect, useState } from "react";
 
-export default function Home() {
+export default function MovieListing() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
   const [loading, setLoading] = useState(true);

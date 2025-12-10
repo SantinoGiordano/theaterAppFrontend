@@ -32,7 +32,7 @@ export default function Navbar() {
               </Link>
             </li>
             <li>
-              <Link className="hover:text-red-400 transition" href="/home">
+              <Link className="hover:text-red-400 transition" href="/movies">
                 Movies
               </Link>
             </li>
