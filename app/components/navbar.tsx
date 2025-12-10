@@ -24,14 +24,6 @@ export default function Navbar() {
               </Link>
             </li>
             <li>
-              <Link
-                className="hover:text-red-400 transition"
-                href="/comingSoon"
-              >
-                Comming Soon
-              </Link>
-            </li>
-            <li>
               <Link className="hover:text-red-400 transition" href="/movies">
                 Movies
               </Link>
@@ -39,6 +31,14 @@ export default function Navbar() {
             <li>
               <Link className="hover:text-red-400 transition" href="/foodItems">
                 Food and Drinks
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="hover:text-red-400 transition"
+                href="/comingSoon"
+              >
+                Comming Soon
               </Link>
             </li>
             <li>
