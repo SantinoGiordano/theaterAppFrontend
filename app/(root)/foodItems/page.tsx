@@ -59,7 +59,9 @@ export default function FoodAndDrink() {
                 className="w-full h-40 object-cover rounded-md mb-3"
               />
 
-              <h2 className="text-xl font-semibold text-red-600">{item.name}</h2>
+              <h2 className="text-xl font-semibold text-red-600">
+                {item.name}
+              </h2>
               <p className="text-sm opacity-70 mb-2">{item.category}</p>
 
               {/* Display sizes if they exist */}
