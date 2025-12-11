@@ -1,9 +1,17 @@
-import React from 'react'
+'use client'
 
-const page = () => {
+import { useSearchParams } from "next/navigation";
+
+export default function CheckoutPage() {
+  const params = useSearchParams();
+  const movie = params.get("movie");
+  const time = params.get("time");
+
   return (
-    <div>page</div>
-  )
+    <div>
+      <h1>Checkout</h1>
+      <p>Movie: {movie}</p>
+      <p>Showtime: {time}</p>
+    </div>
+  );
 }
-
-export default page
