@@ -1,15 +1,40 @@
+"use client";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 export default function CommingSoon() {
+  const [slide, setSlide] = useState(1);
+
+  // Auto-advance every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSlide((prev) => (prev === 4 ? 1 : prev + 1));
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Update the hash to trigger DaisyUI slide change
+  useEffect(() => {
+    window.location.hash = `#slide${slide}`;
+  }, [slide]);
+
   return (
     <>
+      <div className="text-center mt-6">
+        <h2 className="text-2xl text-red-500 font-bold">Coming Soon to Theaters</h2>
+        <p className="text-red-400 mt-2">
+          Stay tuned for exciting upcoming releases!
+        </p>
+      </div>
+
       <div className="carousel w-full">
         {/* Slide 1 */}
         <div id="slide1" className="carousel-item relative w-full">
           <div className="w-full flex justify-center items-center">
             <Image
               src="/comingSoonMoviePosters/oppenheimer.webp"
-              alt="Picture of the author"
+              alt="Oppenheimer poster"
               width={500}
               height={500}
               className="pt-10 w-full max-w-[500px] h-auto object-contain mx-auto"
@@ -17,8 +42,12 @@ export default function CommingSoon() {
           </div>
 
           <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-            <a href="#slide4" className="btn btn-circle">❮</a>
-            <a href="#slide2" className="btn btn-circle">❯</a>
+            <a href="#slide4" className="btn btn-circle">
+              ❮
+            </a>
+            <a href="#slide2" className="btn btn-circle">
+              ❯
+            </a>
           </div>
         </div>
 
@@ -27,7 +56,7 @@ export default function CommingSoon() {
           <div className="w-full flex justify-center items-center">
             <Image
               src="/comingSoonMoviePosters/logan.jpg"
-              alt="Picture of the author"
+              alt="Logan poster"
               width={500}
               height={500}
               className="pt-10 w-full max-w-[500px] h-auto object-contain mx-auto"
@@ -35,8 +64,12 @@ export default function CommingSoon() {
           </div>
 
           <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-            <a href="#slide1" className="btn btn-circle">❮</a>
-            <a href="#slide3" className="btn btn-circle">❯</a>
+            <a href="#slide1" className="btn btn-circle">
+              ❮
+            </a>
+            <a href="#slide3" className="btn btn-circle">
+              ❯
+            </a>
           </div>
         </div>
 
@@ -45,7 +78,7 @@ export default function CommingSoon() {
           <div className="w-full flex justify-center items-center">
             <Image
               src="/comingSoonMoviePosters/theExorcist.jpeg"
-              alt="Picture of the author"
+              alt="The Exorcist poster"
               width={500}
               height={500}
               className="pt-10 w-full max-w-[500px] h-auto object-contain mx-auto"
@@ -53,8 +86,12 @@ export default function CommingSoon() {
           </div>
 
           <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-            <a href="#slide2" className="btn btn-circle">❮</a>
-            <a href="#slide4" className="btn btn-circle">❯</a>
+            <a href="#slide2" className="btn btn-circle">
+              ❮
+            </a>
+            <a href="#slide4" className="btn btn-circle">
+              ❯
+            </a>
           </div>
         </div>
 
@@ -63,7 +100,7 @@ export default function CommingSoon() {
           <div className="w-full flex justify-center items-center">
             <Image
               src="/comingSoonMoviePosters/unfrosted.webp"
-              alt="Picture of the author"
+              alt="Unfrosted poster"
               width={500}
               height={500}
               className="pt-10 w-full max-w-[500px] h-auto object-contain mx-auto"
@@ -71,13 +108,14 @@ export default function CommingSoon() {
           </div>
 
           <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-            <a href="#slide3" className="btn btn-circle">❮</a>
-            <a href="#slide1" className="btn btn-circle">❯</a>
+            <a href="#slide3" className="btn btn-circle">
+              ❮
+            </a>
+            <a href="#slide1" className="btn btn-circle">
+              ❯
+            </a>
           </div>
         </div>
-      </div>
-      <div>
-        
       </div>
     </>
   );
