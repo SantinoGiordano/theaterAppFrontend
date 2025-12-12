@@ -3,7 +3,7 @@ export default function Home() {
     <>
       {/* HERO / PARALLAX BANNER */}
       <div
-        className="min-h-screen bg-fixed bg-cover bg-center flex items-center justify-center"
+        className="h-150 bg-fixed bg-cover bg-center flex items-center justify-center"
         style={{
           backgroundImage: "url('/theaterSeats.jpg')",
         }}
