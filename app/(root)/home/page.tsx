@@ -1,102 +1,142 @@
-'use client'
+"use client";
 
+import { FeaturedMovie, Movie } from "@/types/page";
+import { API_Route } from "@/utils/routes";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState([]);
+  const [featured, setFeatured] = useState([]);
 
-useEffect(() => {
-  async function fetchMovies() {
-    const response = await fetch("/api/movies");
-    const data = await response.json();
-    setMovies(data);
-  }
+  useEffect(() => {
+    async function fetchRandomMovies() {
+      const res = await fetch(`${API_Route}/api/movies/random`);
+      const data = await res.json();
+      setMovies(data);
+    }
 
-  fetchMovies();
-}, []); // important: add dependency array
+    fetchRandomMovies();
+  }, []);
 
-// Filter for the two sections
-const nowPlaying = movies.filter(m => m.status === "now");
-const comingSoon = movies.filter(m => m.status === "coming");
+  useEffect(() => {
+    async function featchFeaturedMovie() {
+      const response = await fetch(`${API_Route}/api/featuredMovie`);
+      const data = await response.json();
+      setFeatured(data);
+    }
 
+    featchFeaturedMovie();
+  }, []);
 
   return (
     <>
-      {/* HERO / PARALLAX BANNER */}
+      {/*--------Header Section ---------------*/}
       <div
-        className="h-150 bg-fixed bg-cover bg-center flex items-center justify-center"
+        className="
+    min-h-[60vh] 
+    sm:min-h-[70vh] 
+    md:min-h-[80vh] 
+    lg:min-h-screen
+    bg-fixed bg-cover bg-center 
+    flex items-center justify-center 
+    px-4
+  "
         style={{
           backgroundImage: "url('/theaterSeats.jpg')",
         }}
       >
-        <div className="bg-black/60 p-10 rounded-lg text-center border border-red-600 shadow-xl">
-          <h1 className="text-6xl font-extrabold text-white drop-shadow-lg tracking-wide">
+        <div
+          className="
+    bg-black/60 
+    p-6 sm:p-8 md:p-10 
+    rounded-xl 
+    text-center 
+    border border-red-600 
+    shadow-xl
+    max-w-3xl
+  "
+        >
+          <h1
+            className="
+      text-3xl 
+      sm:text-4xl 
+      md:text-5xl 
+      lg:text-6xl 
+      font-extrabold 
+      text-white 
+      drop-shadow-lg 
+      tracking-wide
+    "
+          >
             Premier Cinemas
           </h1>
-          <p className="text-gray-200 mt-4 text-lg max-w-2xl mx-auto">
+
+          <p
+            className="
+      text-gray-200 
+      mt-4 
+      text-sm 
+      sm:text-base 
+      md:text-lg 
+      max-w-2xl 
+      mx-auto
+    "
+          >
             Where movies come to life with heart-pounding sound, crystal-clear
             screens, and unforgettable cinematic moments.
           </p>
         </div>
       </div>
-
-      {/* NOW PLAYING SECTION */}
+      {/*--------Four Random Movies -----------*/}
       <section className="py-16 bg-black text-white">
         <h2 className="text-4xl font-bold text-center mb-10 text-red-600">
           🎥 Now Playing
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-6 max-w-6xl mx-auto">
-          {nowPlaying.map((movie) => (
+          {movies.map((movie: Movie, index) => (
             <div
-              key={movie.id}
-              className="bg-gray-900 p-4 rounded-lg shadow-lg hover:scale-105 hover:border-red-500 border transition"
+              key={index}
+              className="bg-gray-900 p-4 rounded-lg shadow-lg hover:scale-105 border transition"
             >
-              <img
-                src={`/movies/${movie.img}.jpg`}
-                className="rounded-lg w-full"
-              />
-              <h3 className="text-xl font-semibold mt-4">{movie.title}</h3>
-              <p className="text-gray-400 text-sm">
-                {movie.genre} | {movie.runtime}
-              </p>
+              <img src={movie.img} className="rounded-lg w-full" />
+              <h3 className="text-xl font-semibold mt-4">{movie.name}</h3>
+              <hr className="my-2 border-white" />
+              <div className="text-sm text-gray-400  mt-4">
+                {movie.description}
+              </div>
             </div>
           ))}
         </div>
       </section>
-
-      {/* FEATURED MOVIE */}
+      {/*--------FEATURED MOVIE----------------*/}
       <section className="py-20 bg-black text-white border-y border-red-700">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 px-6">
-          <img
-            src="/parasiteMovieFeatured.jpeg"
-            className="rounded-lg shadow-xl w-full md:w-1/2 border border-red-600"
-          />
+        <h2 className="text-4xl font-bold mb-4 text-red-500">
+          ⭐ Featured Movie of the Week
+        </h2>
 
-          <div className="md:w-1/2">
-            <h2 className="text-4xl font-bold mb-4 text-red-500">
-              ⭐ Featured Movie of the Week
-            </h2>
-            <h3 className="text-2xl text-white font-semibold">Parasite</h3>
-            <p className="text-gray-300 mt-4 leading-relaxed">
-              Bong Joon-ho’s modern masterpiece, *Parasite*, blends dark comedy,
-              drama, and suspense into a sharp social commentary on class
-              division. This Academy Award–winning film follows two families
-              whose lives intertwine with shocking consequences.
-            </p>
-            <button className="mt-6 bg-red-600 px-6 py-3 rounded-lg text-white font-bold hover:bg-red-500 shadow-lg transition">
-              Buy Tickets
-            </button>
+        {featured.map((movie: FeaturedMovie) => (
+          <div
+            key={movie._id}
+            className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 px-6 mb-10"
+          >
+            <div className="md:w-1/2">
+              <h3 className="text-3xl font-bold">{movie.name}</h3>
+              <p className="mt-4 text-gray-300">{movie.description}</p>
+            </div>
+
+            <img
+              src={movie.img}
+              className="rounded-lg shadow-xl w-full md:w-1/2 border border-red-600"
+            />
           </div>
-        </div>
+        ))}
       </section>
 
-      {/* COMING SOON SECTION */}
       <section className="py-16 bg-gray-900 text-white">
         <h2 className="text-4xl font-bold text-center mb-10 text-red-600">
           🍿 Coming Soon
         </h2>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-6 max-w-6xl mx-auto">
           {/* Coming movies */}
           {[
@@ -120,7 +160,6 @@ const comingSoon = movies.filter(m => m.status === "coming");
         </div>
       </section>
 
-      {/* ABOUT SECTION */}
       <section className="py-20 bg-black text-white">
         <div className="max-w-5xl mx-auto px-6 text-center">
           <h2 className="text-4xl font-bold mb-6 text-red-600">
