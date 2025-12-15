@@ -1,4 +1,25 @@
+'use client'
+
+import { useEffect, useState } from "react";
+
 export default function Home() {
+const [movies, setMovies] = useState([]);
+
+useEffect(() => {
+  async function fetchMovies() {
+    const response = await fetch("/api/movies");
+    const data = await response.json();
+    setMovies(data);
+  }
+
+  fetchMovies();
+}, []); // important: add dependency array
+
+// Filter for the two sections
+const nowPlaying = movies.filter(m => m.status === "now");
+const comingSoon = movies.filter(m => m.status === "coming");
+
+
   return (
     <>
       {/* HERO / PARALLAX BANNER */}
@@ -26,18 +47,19 @@ export default function Home() {
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-6 max-w-6xl mx-auto">
-          {/* Movie Cards */}
-          {[1, 2, 3, 4].map((num) => (
+          {nowPlaying.map((movie) => (
             <div
-              key={num}
+              key={movie.id}
               className="bg-gray-900 p-4 rounded-lg shadow-lg hover:scale-105 hover:border-red-500 border transition"
             >
               <img
-                src={`/movies/now${num}.jpg`}
+                src={`/movies/${movie.img}.jpg`}
                 className="rounded-lg w-full"
               />
-              <h3 className="text-xl font-semibold mt-4">Movie Title {num}</h3>
-              <p className="text-gray-400 text-sm">Genre | Runtime</p>
+              <h3 className="text-xl font-semibold mt-4">{movie.title}</h3>
+              <p className="text-gray-400 text-sm">
+                {movie.genre} | {movie.runtime}
+              </p>
             </div>
           ))}
         </div>
