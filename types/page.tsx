@@ -22,8 +22,12 @@ export interface FoodItem {
   name: string;
   category: string;
   img: string;
-  sizes?: FoodSize[];
-  price?: number;
-  calories?: number;
+  sizes: FoodSize[];
 }
 
+export interface FeaturedMovie {
+  _id: string;
+  name: string;
+  description: string;
+  img: string;
+}
