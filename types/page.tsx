@@ -30,4 +30,7 @@ export interface FeaturedMovie {
   name: string;
   description: string;
   img: string;
+  score: number;
+  runtime: number;
+  rating: string;
 }
