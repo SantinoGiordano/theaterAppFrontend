@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [movies, setMovies] = useState([]);
-  const [featured, setFeatured] = useState([]);
+  const [featured, setFeatured] = useState<FeaturedMovie[]>([]);
 
   useEffect(() => {
     async function fetchRandomMovies() {
@@ -22,6 +22,10 @@ export default function Home() {
     async function featchFeaturedMovie() {
       const response = await fetch(`${API_Route}/api/featuredMovie`);
       const data = await response.json();
+
+      console.log("FEATURED RESPONSE:", data);
+      console.log("IS ARRAY?", Array.isArray(data));
+
       setFeatured(data);
     }
 
@@ -110,70 +114,71 @@ export default function Home() {
         </div>
       </section>
       {/*--------FEATURED MOVIE----------------*/}
-<section className="py-16 bg-black text-white">
-  <div className="max-w-6xl mx-auto px-6">
-    <div className="mb-12">
-      <h2 className="text-4xl font-bold mb-3 text-white">
-        <span className="text-red-500">⭐</span> Featured Movie of the Week
-      </h2>
-    </div>
-
-    {featured.map((movie: FeaturedMovie) => (
-      <div
-        key={movie._id}
-        className="bg-gray-900/50 rounded-xl overflow-hidden border border-gray-800 hover:border-red-500/50 transition-colors duration-300"
-      >
-        <div className="flex flex-col lg:flex-row">
-          {/* Image */}
-          <div className="lg:w-1/2 relative">
-            <img
-              src={movie.img}
-              alt={movie.name}
-              className="w-full h-[400px] lg:h-full object-cover"
-            />
-            <div className="absolute top-4 left-4">
-              <span className="bg-red-600 text-white px-4 py-1 rounded-full text-sm font-bold">
-                FEATURED
-              </span>
-            </div>
+      <section className="py-16 bg-black text-white">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="mb-12">
+            <h2 className="text-4xl font-bold mb-3 text-white">
+              <span className="text-red-500">⭐</span> Featured Movie of the
+              Week
+            </h2>
           </div>
 
-          {/* Content */}
-          <div className="lg:w-1/2 p-8 lg:p-12">
-            <h3 className="text-3xl lg:text-4xl font-bold mb-6 text-white">
-              {movie.name}
-            </h3>
-            <p className="text-gray-300 text-lg leading-relaxed mb-8">
-              {movie.description}
-            </p>
-            
-            <div className="space-y-6">
-              <div className="flex items-center space-x-6 text-gray-400">
-                <div className="flex items-center">
-                  <span className="text-yellow-400 mr-2">⭐</span>
-                  <span>4.8/5</span>
+          {featured.map((movie: FeaturedMovie) => (
+            <div
+              key={movie._id}
+              className="bg-gray-900/50 rounded-xl overflow-hidden border border-gray-800 hover:border-red-500/50 transition-colors duration-300"
+            >
+              <div className="flex flex-col lg:flex-row">
+                {/* Image */}
+                <div className="lg:w-1/2 relative">
+                  <img
+                    src={movie.img}
+                    alt={movie.name}
+                    className="w-full h-[400px] lg:h-full object-cover"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-red-600 text-white px-4 py-1 rounded-full text-sm font-bold">
+                      FEATURED
+                    </span>
+                  </div>
                 </div>
-                <span>•</span>
-                <span>2h 28m</span>
-                <span>•</span>
-                <span>PG-13</span>
-              </div>
-              
-              <div className="flex flex-wrap gap-3">
-                <button className="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300">
-                  Watch Trailer
-                </button>
-                <button className="border border-gray-700 hover:border-red-500 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300">
-                  Add to List
-                </button>
+
+                {/* Content */}
+                <div className="lg:w-1/2 p-8 lg:p-12">
+                  <h3 className="text-3xl lg:text-4xl font-bold mb-6 text-white">
+                    {movie.name}
+                  </h3>
+                  <p className="text-gray-300 text-lg leading-relaxed mb-8">
+                    {movie.description}
+                  </p>
+
+                  <div className="space-y-6">
+                    <div className="flex items-center space-x-6 text-gray-400">
+                      <div className="flex items-center">
+                        <span className="text-yellow-400 mr-2">⭐</span>
+                        <span>{movie.score || "None"}</span>
+                      </div>
+                      <span>•</span>
+                      <span>{movie.runtime + " min" || "None"}</span>
+                      <span>•</span>
+                      <span>{movie.rating  || "None"}</span>
+                    </div>
+
+                    <div className="flex flex-wrap gap-3">
+                      <button className="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300">
+                        Watch Trailer
+                      </button>
+                      <button className="border border-gray-700 hover:border-red-500 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300">
+                        Add to List
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          ))}
         </div>
-      </div>
-    ))}
-  </div>
-</section>
+      </section>
 
       <section className="py-16 bg-gray-900 text-white">
         <h2 className="text-4xl font-bold text-center mb-10 text-red-600">
