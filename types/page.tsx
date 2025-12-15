@@ -9,6 +9,7 @@ export interface Movie {
   showtimes: string[];
   directors: string;
   img?: string;
+  trailerUrl?: string;
 }
 
 export interface FoodSize {
@@ -33,4 +34,5 @@ export interface FeaturedMovie {
   score: number;
   runtime: number;
   rating: string;
+  trailerUrl?: string;
 }
