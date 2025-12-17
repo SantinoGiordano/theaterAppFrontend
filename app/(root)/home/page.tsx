@@ -39,54 +39,53 @@ export default function Home() {
       {/*--------Header Section ---------------*/}
       <div
         className="
-    min-h-[60vh] 
-    sm:min-h-[70vh] 
-    md:min-h-[80vh] 
-    lg:min-h-screen
-    bg-fixed bg-cover bg-center 
-    flex items-center justify-center 
-    px-4
-  "
+        min-h-[60vh] 
+        sm:min-h-[70vh] 
+        md:min-h-[80vh] 
+        lg:min-h-screen
+        bg-fixed bg-cover bg-center 
+        flex items-center justify-center 
+        px-4
+      "
         style={{
           backgroundImage: "url('/theaterSeats.jpg')",
         }}
       >
         <div
           className="
-    bg-black/60 
-    p-6 sm:p-8 md:p-10 
-    rounded-xl 
-    text-center 
-    border border-red-600 
-    shadow-xl
-    max-w-3xl
-  "
+          bg-black/60 
+          p-6 sm:p-8 md:p-10 
+          rounded-xl 
+          text-center 
+          border border-red-600 
+          shadow-xl
+          max-w-3xl
+        "
         >
           <h1
             className="
-      text-3xl 
-      sm:text-4xl 
-      md:text-5xl 
-      lg:text-6xl 
-      font-extrabold 
-      text-white 
-      drop-shadow-lg 
-      tracking-wide
-    "
+            text-3xl 
+            sm:text-4xl 
+            md:text-5xl 
+            lg:text-6xl 
+            font-extrabold 
+            text-white 
+            drop-shadow-lg 
+            tracking-wide
+          "
           >
             Premier Cinemas
           </h1>
-
           <p
             className="
-      text-gray-200 
-      mt-4 
-      text-sm 
-      sm:text-base 
-      md:text-lg 
-      max-w-2xl 
-      mx-auto
-    "
+            text-gray-200 
+            mt-4 
+            text-sm 
+            sm:text-base 
+            md:text-lg 
+            max-w-2xl 
+            mx-auto
+          "
           >
             Where movies come to life with heart-pounding sound, crystal-clear
             screens, and unforgettable cinematic moments.
@@ -133,7 +132,9 @@ export default function Home() {
               <div className="flex flex-col lg:flex-row">
                 {/* Image */}
                 <div className="lg:w-1/2 relative">
-                  <img
+                  <Image
+                    width={600}
+                    height={400}
                     src={movie.img}
                     alt={movie.name}
                     className="w-full h-[400px] lg:h-full object-cover"
@@ -190,7 +191,6 @@ export default function Home() {
           🍿 Coming Soon
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-6 max-w-6xl mx-auto">
-          {/* Coming movies */}
           {[
             { title: "Deadpool 3", date: "July 2025", img: "coming1" },
             { title: "Joker 2", date: "October 2025", img: "coming2" },
@@ -205,7 +205,7 @@ export default function Home() {
                 alt={movie.title}
                 width={400}
                 height={600}
-                src={`/movies/${movie.img}.jpg`}  
+                src={`/movies/${movie.img}.jpg`}
                 className="rounded-lg w-full"
               />
               <h3 className="text-xl font-semibold mt-4">{movie.title}</h3>
