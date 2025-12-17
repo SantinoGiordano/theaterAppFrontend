@@ -4,6 +4,7 @@ import { FeaturedMovie, Movie } from "@/types/page";
 import { API_Route } from "@/utils/routes";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function Home() {
   const [movies, setMovies] = useState([]);
@@ -162,13 +163,14 @@ export default function Home() {
                       <span>•</span>
                       <span>{movie.runtime + " min" || "None"}</span>
                       <span>•</span>
-                      <span>{movie.rating  || "None"}</span>
+                      <span>{movie.rating || "None"}</span>
                     </div>
 
                     <div className="flex flex-wrap gap-3">
                       <Link
-                        href={movie.trailerUrl || "https://www.youtube.com/"} 
-                      className="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300">
+                        href={movie.trailerUrl || "https://www.youtube.com/"}
+                        className="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300"
+                      >
                         Watch Trailer
                       </Link>
                       {/* <button className="border border-gray-700 hover:border-red-500 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300">
@@ -199,8 +201,11 @@ export default function Home() {
               key={i}
               className="bg-black p-4 rounded-lg shadow-lg hover:scale-105 hover:border-red-500 border transition"
             >
-              <img
-                src={`/movies/${movie.img}.jpg`}
+              <Image
+                alt={movie.title}
+                width={400}
+                height={600}
+                src={`/movies/${movie.img}.jpg`}  
                 className="rounded-lg w-full"
               />
               <h3 className="text-xl font-semibold mt-4">{movie.title}</h3>
