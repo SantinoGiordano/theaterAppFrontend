@@ -80,25 +80,23 @@ export default function MovieListing() {
   }, []);
 
   // Memoized filtered movies
-const filteredMovies = useMemo(() => {
-  if (selectedGenre === "All") return movies;
+  const filteredMovies = useMemo(() => {
+    if (selectedGenre === "All") return movies;
 
-  return movies.filter((movie) => {
-    let movieGenres: string[] = [];
+    return movies.filter((movie) => {
+      let movieGenres: string[] = [];
 
-    if (Array.isArray(movie.genres)) {
-      movieGenres = movie.genres;
-    } else if (typeof movie.genres === "string") {
-      movieGenres = movie.genres.split(/[,|]/).map((g: string) => g.trim());
-    }
+      if (Array.isArray(movie.genres)) {
+        movieGenres = movie.genres;
+      } else if (typeof movie.genres === "string") {
+        movieGenres = movie.genres.split(/[,|]/).map((g: string) => g.trim());
+      }
 
-    return movieGenres.some(
-      (genre: string) =>
-        genre.toLowerCase() === selectedGenre.toLowerCase()
-    );
-  });
-}, [movies, selectedGenre]);
-
+      return movieGenres.some(
+        (genre: string) => genre.toLowerCase() === selectedGenre.toLowerCase()
+      );
+    });
+  }, [movies, selectedGenre]);
 
   // Handle showtime selection with validation
   const handleShowtimeSelection = useCallback(
