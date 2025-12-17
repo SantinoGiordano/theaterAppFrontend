@@ -2,6 +2,7 @@
 
 import { FeaturedMovie, Movie } from "@/types/page";
 import { API_Route } from "@/utils/routes";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -165,12 +166,14 @@ export default function Home() {
                     </div>
 
                     <div className="flex flex-wrap gap-3">
-                      <button className="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300">
+                      <Link
+                        href={movie.trailerUrl || "https://www.youtube.com/"} 
+                      className="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300">
                         Watch Trailer
-                      </button>
-                      <button className="border border-gray-700 hover:border-red-500 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300">
+                      </Link>
+                      {/* <button className="border border-gray-700 hover:border-red-500 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300">
                         Add to List
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                 </div>
