@@ -4,7 +4,6 @@ import { FeaturedMovie, Movie } from "@/types/page";
 import { API_Route } from "@/utils/routes";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import Image from "next/image";
 
 export default function Home() {
   const [movies, setMovies] = useState([]);
@@ -39,53 +38,54 @@ export default function Home() {
       {/*--------Header Section ---------------*/}
       <div
         className="
-        min-h-[60vh] 
-        sm:min-h-[70vh] 
-        md:min-h-[80vh] 
-        lg:min-h-screen
-        bg-fixed bg-cover bg-center 
-        flex items-center justify-center 
-        px-4
-      "
+    min-h-[60vh] 
+    sm:min-h-[70vh] 
+    md:min-h-[80vh] 
+    lg:min-h-screen
+    bg-fixed bg-cover bg-center 
+    flex items-center justify-center 
+    px-4
+  "
         style={{
           backgroundImage: "url('/theaterSeats.jpg')",
         }}
       >
         <div
           className="
-          bg-black/60 
-          p-6 sm:p-8 md:p-10 
-          rounded-xl 
-          text-center 
-          border border-red-600 
-          shadow-xl
-          max-w-3xl
-        "
+    bg-black/60 
+    p-6 sm:p-8 md:p-10 
+    rounded-xl 
+    text-center 
+    border border-red-600 
+    shadow-xl
+    max-w-3xl
+  "
         >
           <h1
             className="
-            text-3xl 
-            sm:text-4xl 
-            md:text-5xl 
-            lg:text-6xl 
-            font-extrabold 
-            text-white 
-            drop-shadow-lg 
-            tracking-wide
-          "
+      text-3xl 
+      sm:text-4xl 
+      md:text-5xl 
+      lg:text-6xl 
+      font-extrabold 
+      text-white 
+      drop-shadow-lg 
+      tracking-wide
+    "
           >
             Premier Cinemas
           </h1>
+
           <p
             className="
-            text-gray-200 
-            mt-4 
-            text-sm 
-            sm:text-base 
-            md:text-lg 
-            max-w-2xl 
-            mx-auto
-          "
+      text-gray-200 
+      mt-4 
+      text-sm 
+      sm:text-base 
+      md:text-lg 
+      max-w-2xl 
+      mx-auto
+    "
           >
             Where movies come to life with heart-pounding sound, crystal-clear
             screens, and unforgettable cinematic moments.
@@ -132,9 +132,7 @@ export default function Home() {
               <div className="flex flex-col lg:flex-row">
                 {/* Image */}
                 <div className="lg:w-1/2 relative">
-                  <Image
-                    width={600}
-                    height={400}
+                  <img
                     src={movie.img}
                     alt={movie.name}
                     className="w-full h-[400px] lg:h-full object-cover"
@@ -164,14 +162,13 @@ export default function Home() {
                       <span>•</span>
                       <span>{movie.runtime + " min" || "None"}</span>
                       <span>•</span>
-                      <span>{movie.rating || "None"}</span>
+                      <span>{movie.rating  || "None"}</span>
                     </div>
 
                     <div className="flex flex-wrap gap-3">
                       <Link
-                        href={movie.trailerUrl || "https://www.youtube.com/"}
-                        className="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300"
-                      >
+                        href={movie.trailerUrl || "https://www.youtube.com/"} 
+                      className="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300">
                         Watch Trailer
                       </Link>
                       {/* <button className="border border-gray-700 hover:border-red-500 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300">
@@ -191,6 +188,7 @@ export default function Home() {
           🍿 Coming Soon
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-6 max-w-6xl mx-auto">
+          {/* Coming movies */}
           {[
             { title: "Deadpool 3", date: "July 2025", img: "coming1" },
             { title: "Joker 2", date: "October 2025", img: "coming2" },
@@ -201,10 +199,7 @@ export default function Home() {
               key={i}
               className="bg-black p-4 rounded-lg shadow-lg hover:scale-105 hover:border-red-500 border transition"
             >
-              <Image
-                alt={movie.title}
-                width={400}
-                height={600}
+              <img
                 src={`/movies/${movie.img}.jpg`}
                 className="rounded-lg w-full"
               />
