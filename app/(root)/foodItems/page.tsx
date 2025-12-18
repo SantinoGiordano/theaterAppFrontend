@@ -1,6 +1,7 @@
 "use client";
 
 import { FoodItem } from "@/types/page";
+import { API_Route } from "@/utils/routes";
 import { useEffect, useState } from "react";
 
 export default function FoodAndDrink() {
@@ -8,7 +9,7 @@ export default function FoodAndDrink() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/concession")
+    fetch(`${API_Route}/api/concession`)
       .then((res) => {
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
