@@ -4,7 +4,7 @@ import { FoodItem } from "@/types/page";
 import { useEffect, useState } from "react";
 
 export default function FoodAndDrink() {
-  const [food, setFood] = useState<FoodItem[]>([]); // always start as array
+  const [food, setFood] = useState<FoodItem[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -16,13 +16,7 @@ export default function FoodAndDrink() {
         return res.json();
       })
       .then((data) => {
-        // Make sure data is an array
-        if (Array.isArray(data)) {
-          setFood(data);
-        } else {
-          setFood([]);
-          console.error("Concession API returned non-array:", data);
-        }
+        setFood(Array.isArray(data) ? data : []);
         setLoading(false);
       })
       .catch((err) => {
@@ -33,55 +27,74 @@ export default function FoodAndDrink() {
   }, []);
 
   return (
-    <div className="p-6 min-h-screen bg-gray-50">
-      <h1 className="text-4xl font-bold mb-6 text-red-600 tracking-tight">
-        Food & Drinks
-      </h1>
+    <div className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black px-6 py-10">
+      {/* Header */}
+      <div className="mb-10 text-center">
+        <h1 className="text-4xl font-extrabold tracking-tight text-red-600">
+          Food & Drinks
+        </h1>
+        <p className="mt-2 text-gray-400">
+          Classic theater snacks & refreshments
+        </p>
+      </div>
 
+      {/* Loading */}
       {loading ? (
         <div className="flex justify-center items-center mt-20">
-          <span className="loading loading-spinner loading-xl"></span>
+          <span className="loading loading-spinner loading-lg text-red-600"></span>
         </div>
-      ) : !food || food.length === 0 ? (
-        <p className="text-center text-gray-500 mt-20">
+      ) : food.length === 0 ? (
+        <p className="text-center text-gray-400 mt-20">
           No food items available.
         </p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {food.map((item: FoodItem) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          {food.map((item) => (
             <div
               key={item._id}
-              className="card bg-white p-4 shadow-lg rounded-xl flex flex-col"
+              className="group rounded-2xl bg-gray-900 border border-gray-800 shadow-xl overflow-hidden transition hover:border-red-600 hover:shadow-red-600/20"
             >
-              <img
-                src={item.img || "https://placehold.co/100"}
-                alt={item.name}
-                className="w-full h-40 object-cover rounded-md mb-3"
-              />
+              {/* Image */}
+              <div className="relative h-44 overflow-hidden">
+                <img
+                  src={item.img || "https://placehold.co/400x300"}
+                  alt={item.name}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
 
-              <h2 className="text-xl font-semibold text-red-600">
-                {item.name}
-              </h2>
-              <p className="text-sm opacity-70 mb-2">{item.category}</p>
-
-              {/* Display sizes if they exist */}
-              {item.sizes && item.sizes.length > 0 ? (
-                <div className="flex flex-col gap-2 mt-2">
-                  {item.sizes.map((size, index) => (
-                    <div
-                      key={index}
-                      className="p-2 bg-gray-100 rounded-md shadow flex justify-between items-center"
-                    >
-                      <span>{size.size}</span>
-                      <span>${size.price.toFixed(2)}</span>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <p className="mt-2 font-medium">
-                  ${item.price?.toFixed(2) || "N/A"}
+              {/* Content */}
+              <div className="p-5 flex flex-col gap-2">
+                <h2 className="text-xl font-bold text-white">
+                  {item.name}
+                </h2>
+                <p className="text-sm uppercase tracking-wide text-gray-400">
+                  {item.category}
                 </p>
-              )}
+
+                {/* Sizes */}
+                {item.sizes && item.sizes.length > 0 ? (
+                  <div className="mt-3 flex flex-col gap-2">
+                    {item.sizes.map((size, index) => (
+                      <div
+                        key={index}
+                        className="flex justify-between items-center rounded-lg bg-gray-800 px-3 py-2 text-sm"
+                      >
+                        <span className="text-gray-300">
+                          {size.size}
+                        </span>
+                        <span className="font-semibold text-red-500">
+                          ${size.price.toFixed(2)}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="mt-3 text-lg font-semibold text-red-500">
+                    ${item.price?.toFixed(2) || "N/A"}
+                  </p>
+                )}
+              </div>
             </div>
           ))}
         </div>
