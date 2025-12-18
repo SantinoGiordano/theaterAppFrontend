@@ -36,3 +36,12 @@ export interface FeaturedMovie {
   rating: string;
   trailerUrl?: string;
 }
+
+export interface ComingSoonMovie{
+  _id: string;
+  title?: string;
+  img?: string;
+  description?: string;
+  trailerUrl?: string;
+  releaseDate?: string;
+};
