@@ -263,12 +263,13 @@ export default function MovieListing() {
                 >
                   <figure className="relative w-full h-64">
                     <img
-                      src={movie.img}
+                      src={`moviePosters/${movie.img}`}
                       alt={`Poster for ${movie.name}`}
+                      draggable={false}
                       className="w-full h-full object-cover"
                       loading="lazy"
                       onError={(e) => {
-                        e.currentTarget.src = "/api/placeholder/400/256";
+                        e.currentTarget.src = "https://placehold.co/600x400";
                         e.currentTarget.alt = "Movie poster not available";
                       }}
                     />
