@@ -30,7 +30,7 @@ export interface FeaturedMovie {
   _id: string;
   name: string;
   description: string;
-  img: string;
+  img?: string;
   score: number;
   runtime: number;
   rating: string;
