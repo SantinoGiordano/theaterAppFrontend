@@ -4,6 +4,7 @@ import Image from "next/image";
 
 export default function CommingSoon() {
   const [slide, setSlide] = useState(1);
+  const [movies, setMovies] = useState([]);
 
   // Auto-advance every 5 seconds
   useEffect(() => {
@@ -14,15 +15,23 @@ export default function CommingSoon() {
     return () => clearInterval(interval);
   }, []);
 
-  // Update the hash to trigger DaisyUI slide change
   useEffect(() => {
     window.location.hash = `#slide${slide}`;
   }, [slide]);
 
+  useEffect(() => {
+    async function fetchComingSoonMovies() {
+      const res = await fetch(`/api/movies/comingSoon`);
+      const data = await res.json();
+      setMovies(data);
+    }
+  }, []);
   return (
     <>
       <div className="text-center mt-6">
-        <h2 className="text-2xl text-red-500 font-bold">Coming Soon to Theaters</h2>
+        <h2 className="text-2xl text-red-500 font-bold">
+          Coming Soon to Theaters
+        </h2>
         <p className="text-red-400 mt-2">
           Stay tuned for exciting upcoming releases!
         </p>
