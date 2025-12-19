@@ -3,6 +3,7 @@
 import { FoodItem, FoodSize } from "@/types/page";
 import { API_Route } from "@/utils/routes";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function FoodAndDrink() {
   const [food, setFood] = useState<FoodItem[]>([]);
@@ -64,7 +65,7 @@ export default function FoodAndDrink() {
               >
                 {/* Image */}
                 <div className="relative h-44 overflow-hidden">
-                  <img
+                  <Image
                     src={item.img || "https://placehold.co/400x300"}
                     alt={item.name}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
