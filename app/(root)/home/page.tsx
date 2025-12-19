@@ -3,12 +3,13 @@
 import { FeaturedMovie, Movie } from "@/types/page";
 import { API_Route } from "@/utils/routes";
 import Link from "next/link";
+import router, { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Home() {
   const [movies, setMovies] = useState([]);
   const [featured, setFeatured] = useState<FeaturedMovie[]>([]);
-
+  const router = useRouter();
   useEffect(() => {
     async function fetchRandomMovies() {
       const res = await fetch(`${API_Route}/api/movies/random`);
@@ -101,10 +102,18 @@ export default function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-6 max-w-6xl mx-auto">
           {movies.map((movie: Movie, index) => (
             <div
+            onClick={()=>{
+              router.push("./")
+            }}
               key={index}
               className="bg-gray-900 p-4 rounded-lg shadow-lg hover:scale-105 border transition"
             >
-              <img src={movie.img} className="rounded-lg w-full" />
+              <img 
+              draggable="false" 
+              alt={movie.name}
+              src={`moviePosters/${movie.img}`} 
+              className="rounded-lg w-full" 
+              />
               <h3 className="text-xl font-semibold mt-4">{movie.name}</h3>
               <hr className="my-2 border-white" />
               <div className="text-sm text-gray-400  mt-4">
