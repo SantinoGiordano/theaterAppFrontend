@@ -3,7 +3,7 @@
 import { FeaturedMovie, Movie } from "@/types/page";
 import { API_Route } from "@/utils/routes";
 import Link from "next/link";
-import router, { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -103,7 +103,7 @@ export default function Home() {
           {movies.map((movie: Movie, index) => (
             <div
             onClick={()=>{
-              router.push("./")
+              router.push("./movies")
             }}
               key={index}
               className="bg-gray-900 p-4 rounded-lg shadow-lg hover:scale-105 border transition"
