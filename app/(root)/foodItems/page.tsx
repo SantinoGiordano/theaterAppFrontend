@@ -65,8 +65,8 @@ export default function FoodAndDrink() {
               >
                 {/* Image */}
                 <div className="relative h-44 overflow-hidden">
-                  <Image
-                    src={item.img || "https://placehold.co/400x300"}
+                  <img
+                    src={`concession/${item.img}` || "https://placehold.co/600x400"}
                     alt={item.name}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
