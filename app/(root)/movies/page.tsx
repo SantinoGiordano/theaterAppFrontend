@@ -181,7 +181,7 @@ export default function MovieListing() {
   }
 
   return (
-    <div className="bg-gray-900 min-h-screen">
+    <div className="bg-gray-950 min-h-screen">
       <div className="container mx-auto px-4 py-8">
         <header className="mb-8">
           <h1 className="text-4xl font-extrabold mb-6 text-white tracking-tight">

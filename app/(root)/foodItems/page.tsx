@@ -29,10 +29,10 @@ export default function FoodAndDrink() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black px-6 py-10">
+    <div className="min-h-screen bg-gray-950 to-black px-6 py-10">
       {/* Header */}
       <div className="mb-10 text-center">
-        <h1 className="text-4xl font-extrabold tracking-tight text-red-600">
+        <h1 className="text-4xl font-extrabold tracking-tight text-white">
           Food & Drinks
         </h1>
         <p className="mt-2 text-gray-400">
