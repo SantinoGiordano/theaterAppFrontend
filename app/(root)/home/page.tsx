@@ -1,13 +1,17 @@
 "use client";
 
-import { FeaturedMovie, Movie } from "@/types/page";
+import { ComingSoonMovie, FeaturedMovie, Movie } from "@/types/page";
 import { API_Route } from "@/utils/routes";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function Home() {
   const [movies, setMovies] = useState([]);
+  const [comingSoonMovies, setComingSoonMovies] = useState<ComingSoonMovie[]>(
+    []
+  );
   const [featured, setFeatured] = useState<FeaturedMovie[]>([]);
   const router = useRouter();
   useEffect(() => {
@@ -18,6 +22,15 @@ export default function Home() {
     }
 
     fetchRandomMovies();
+  }, []);
+
+  useEffect(() => {
+    async function fetchComingSoonMovies() {
+      const res = await fetch(`${API_Route}/api/comingSoon`);
+      const data = await res.json();
+      setComingSoonMovies(data);
+    }
+    fetchComingSoonMovies();
   }, []);
 
   useEffect(() => {
@@ -76,8 +89,6 @@ export default function Home() {
           >
             Premier Cinemas
           </h1>
-
-        
         </div>
       </div>
       {/*--------Four Random Movies -----------*/}
@@ -89,17 +100,17 @@ export default function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-6 max-w-6xl mx-auto">
           {movies.map((movie: Movie, index) => (
             <div
-            onClick={()=>{
-              router.push("./movies")
-            }}
+              onClick={() => {
+                router.push("./movies");
+              }}
               key={index}
               className="bg-gray-900 p-4 rounded-lg shadow-lg hover:scale-105 border transition"
             >
-              <img 
-              draggable="false" 
-              alt={movie.name}
-              src={`moviePosters/${movie.img}`} 
-              className="rounded-lg w-full" 
+              <img
+                draggable="false"
+                alt={movie.name}
+                src={`moviePosters/${movie.img}`}
+                className="rounded-lg w-full"
               />
               <h3 className="text-xl font-semibold mt-4">{movie.name}</h3>
               <hr className="my-2 border-white" />
@@ -129,8 +140,8 @@ export default function Home() {
                 {/* Image */}
                 <div className="lg:w-1/2 relative">
                   <img
-                    src={movie.img}
                     alt={movie.name}
+                    src={movie.img}
                     className="w-full h-[400px] lg:h-full object-cover"
                   />
                   <div className="absolute top-4 left-4">
@@ -158,13 +169,14 @@ export default function Home() {
                       <span>•</span>
                       <span>{movie.runtime + " min" || "None"}</span>
                       <span>•</span>
-                      <span>{movie.rating  || "None"}</span>
+                      <span>{movie.rating || "None"}</span>
                     </div>
 
                     <div className="flex flex-wrap gap-3">
                       <Link
-                        href={movie.trailerUrl || "https://www.youtube.com/"} 
-                      className="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300">
+                        href={movie.trailerUrl || "https://www.youtube.com/"}
+                        className="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300"
+                      >
                         Watch Trailer
                       </Link>
                       {/* <button className="border border-gray-700 hover:border-red-500 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300">
@@ -184,23 +196,23 @@ export default function Home() {
           🍿 Coming Soon
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-6 max-w-6xl mx-auto">
-          {/* Coming movies */}
-          {[
-            { title: "Deadpool 3", date: "July 2025", img: "coming1" },
-            { title: "Joker 2", date: "October 2025", img: "coming2" },
-            { title: "Sonic 3", date: "December 2025", img: "coming3" },
-            { title: "Fantastic Four", date: "March 2026", img: "coming4" },
-          ].map((movie, i) => (
+          {comingSoonMovies.map((movie, index) => (
             <div
-              key={i}
+              key={index}
               className="bg-black p-4 rounded-lg shadow-lg hover:scale-105 hover:border-red-500 border transition"
             >
-              <img
-                src={`/movies/${movie.img}.jpg`}
+              <Image
+                width={250}
+                height={250}
+                draggable="false"
+                alt={movie.title}
+                src={`/comingSoonMoviePosters/${movie.img}`}
                 className="rounded-lg w-full"
               />
               <h3 className="text-xl font-semibold mt-4">{movie.title}</h3>
-              <p className="text-gray-400 text-sm">Releases {movie.date}</p>
+              <p className="text-gray-400 text-sm">
+                Releases {movie.releaseDate}
+              </p>
             </div>
           ))}
         </div>
