@@ -30,7 +30,7 @@ export interface FeaturedMovie {
   _id: string;
   name: string;
   description: string;
-  img?: string;
+  img: string;
   score: number;
   runtime: number;
   rating: string;
@@ -39,9 +39,9 @@ export interface FeaturedMovie {
 
 export interface ComingSoonMovie{
   _id: string;
-  title?: string;
-  img?: string;
-  description?: string;
-  trailerUrl?: string;
-  releaseDate?: string;
+  title: string;
+  img: string;
+  description: string;
+  trailerUrl: string;
+  releaseDate: string;
 };
