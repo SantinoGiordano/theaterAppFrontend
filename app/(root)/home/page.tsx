@@ -77,20 +77,7 @@ export default function Home() {
             Premier Cinemas
           </h1>
 
-          <p
-            className="
-      text-gray-200 
-      mt-4 
-      text-sm 
-      sm:text-base 
-      md:text-lg 
-      max-w-2xl 
-      mx-auto
-    "
-          >
-            Where movies come to life with heart-pounding sound, crystal-clear
-            screens, and unforgettable cinematic moments.
-          </p>
+        
         </div>
       </div>
       {/*--------Four Random Movies -----------*/}
