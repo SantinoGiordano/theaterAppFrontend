@@ -201,7 +201,7 @@ export default function Home() {
               key={index}
               className="bg-black p-4 rounded-lg shadow-lg hover:scale-105 hover:border-red-500 border transition"
             >
-              <Image
+              <img
                 width={250}
                 height={250}
                 draggable="false"
