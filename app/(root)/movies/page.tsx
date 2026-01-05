@@ -343,7 +343,7 @@ export default function MovieListing() {
                         aria-label={`Watch trailer for ${movie.name}`}
                       >
                         Find Trailers
-                      </Link>
+                      </Link> 
                     </div>
                   </div>
                 </article>
