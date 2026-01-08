@@ -83,7 +83,7 @@ export default function ComingSoon() {
                 <Image
                   draggable={false}
                   src={`/comingSoonMoviePosters/${movie.img}`}
-                  alt={movie.title ?? "Coming Soon Movie Poster"}
+                  alt={movie.name ?? "Coming Soon Movie Poster"}
                   width={500}
                   height={500}
                   className="pt-10 w-full max-w-[500px] h-auto object-contain mx-auto drop-shadow-lg"

@@ -205,11 +205,11 @@ export default function Home() {
                 width={250}
                 height={250}
                 draggable="false"
-                alt={movie.title}
+                alt={movie.name}
                 src={`/comingSoonMoviePosters/${movie.img}`}
                 className="rounded-lg w-full"
               />
-              <h3 className="text-xl font-semibold mt-4">{movie.title}</h3>
+              <h3 className="text-xl font-semibold mt-4">{movie.name}</h3>
               <p className="text-gray-400 text-sm">
                 Releases {movie.releaseDate}
               </p>
