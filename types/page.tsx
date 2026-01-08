@@ -39,9 +39,9 @@ export interface FeaturedMovie {
 
 export interface ComingSoonMovie{
   _id: string;
-  title: string;
+  name: string;
   img: string;
   description: string;
-  trailerUrl: string;
+  // trailerUrl: string;
   releaseDate: string;
 };
