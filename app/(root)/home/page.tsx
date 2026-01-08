@@ -200,6 +200,7 @@ export default function Home() {
             <div
               key={index}
               className="bg-black p-4 rounded-lg shadow-lg hover:scale-105 hover:border-red-500 border transition"
+              onClick={()=> router.push("/comingSoon")}
             >
               <img
                 width={250}
