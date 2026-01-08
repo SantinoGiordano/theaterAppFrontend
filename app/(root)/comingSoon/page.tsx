@@ -56,7 +56,7 @@ export default function ComingSoon() {
               <div className="w-full flex flex-col items-center justify-center p-6">
                 <div className="relative w-full max-w-3xl mx-auto mt-8 text-center">
                   {/* Glow effect */}
-                  <div className="absolute inset-0 blur-3xl opacity-30 bg-gradient-to-r from-red-700 via-red-500 to-red-700 rounded-full" />
+                  <div className="" />
 
                   <h2
                     className="relative text-4xl md:text-5xl font-extrabold uppercase tracking-widest
@@ -67,11 +67,11 @@ export default function ComingSoon() {
                   </h2>
 
                   <div className="mt-4 flex items-center justify-center gap-3">
-                    <span className="h-[1px] w-12 bg-red-600" />
+                    <span className="h-px w-12 bg-red-600" />
                     <p className="text-gray-300 text-sm md:text-base tracking-wide uppercase">
                       In Theaters Soon
                     </p>
-                    <span className="h-[1px] w-12 bg-red-600" />
+                    <span className="h-px w-12 bg-red-600" />
                   </div>
 
                   <p className="mt-3 text-gray-400 max-w-xl mx-auto text-sm md:text-base leading-relaxed">
