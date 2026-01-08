@@ -49,7 +49,6 @@ export default function Home() {
 
   return (
     <>
-      {/*--------Header Section ---------------*/}
       <div
         className="
     min-h-[60vh] 
@@ -100,41 +99,39 @@ export default function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-6 max-w-6xl mx-auto">
           {movies.map((movie: Movie, index) => (
             <div
-  onClick={() => router.push("./movies")}
-  key={index}
-  className="
+              onClick={() => router.push("./movies")}
+              key={index}
+              className="
     bg-gray-900 p-4 rounded-lg shadow-lg border
     transition
     cursor-pointer
     md:hover:scale-105
   "
->
-  <img
-    draggable="false"
-    alt={movie.name}
-    src={`moviePosters/${movie.img}`}
-    className="
+            >
+              <img
+                draggable="false"
+                alt={movie.name}
+                src={`moviePosters/${movie.img}`}
+                className="
       rounded-lg w-full
       aspect-[2/3]
       object-cover
     "
-  />
+              />
 
-  <h3 className="text-lg sm:text-xl font-semibold mt-4">
-    {movie.name}
-  </h3>
+              <h3 className="text-lg sm:text-xl font-semibold mt-4">
+                {movie.name}
+              </h3>
 
-  <hr className="my-2 border-white/30" />
+              <hr className="my-2 border-white/30" />
 
-  <div className="text-sm text-gray-400 line-clamp-3">
-    {movie.description}
-  </div>
-</div>
-
+              <div className="text-sm text-gray-400 line-clamp-3">
+                {movie.description}
+              </div>
+            </div>
           ))}
         </div>
       </section>
-      {/*--------FEATURED MOVIE----------------*/}
       <section className="py-16 bg-black text-white">
         <div className="max-w-6xl mx-auto px-6">
           <div className="mb-12">
@@ -213,7 +210,7 @@ export default function Home() {
             <div
               key={index}
               className="bg-black p-4 rounded-lg shadow-lg hover:scale-105 hover:border-red-500 border transition"
-              onClick={()=> router.push("/comingSoon")}
+              onClick={() => router.push("/comingSoon")}
             >
               <img
                 width={250}
