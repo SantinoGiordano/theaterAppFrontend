@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { API_Route } from "@/utils/routes";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -17,7 +18,7 @@ export default function RegisterPage() {
     setSuccess("");
 
     try {
-      const res = await fetch("http://localhost:8080/api/register", {
+      const res = await fetch(`${API_Route}/api/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
