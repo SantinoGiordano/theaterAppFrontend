@@ -1,1 +1,1 @@
-export const API_Route = "http://localhost:8080";
+export const API_Route = "https://theaterappbackend.onrender.com/";
