@@ -9,9 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "daisy": "^0.2.0",
+    "daisy": "^0.1.7",
     "lucide-react": "^0.556.0",
-    "next": "16.0.7",
+    "next": "^16.1.6",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "resend": "^6.9.2",
