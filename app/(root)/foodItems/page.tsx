@@ -30,7 +30,6 @@ export default function FoodAndDrink() {
 
   return (
     <div className="min-h-screen bg-gray-950 to-black px-6 py-10">
-      {/* Header */}
       <div className="mb-10 text-center">
         <h1 className="text-4xl font-extrabold tracking-tight text-white">
           Food & Drinks
@@ -40,7 +39,6 @@ export default function FoodAndDrink() {
         </p>
       </div>
 
-      {/* Loading */}
       {loading ? (
         <div className="flex justify-center items-center mt-20">
           <span className="loading loading-spinner loading-lg text-red-600"></span>
@@ -52,7 +50,6 @@ export default function FoodAndDrink() {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {food.map((item) => {
-            // 👉 derive a fallback display price (lowest size price)
             const displayPrice =
               item.sizes && item.sizes.length > 0
                 ? Math.min(...item.sizes.map((s) => s.price)).toFixed(2)
@@ -63,25 +60,22 @@ export default function FoodAndDrink() {
                 key={item._id}
                 className="group rounded-2xl bg-gray-900 border border-gray-800 shadow-xl overflow-hidden transition hover:border-red-600 hover:shadow-red-600/20"
               >
-                {/* Image */}
                 <div className="relative h-44 overflow-hidden">
                   <img
-                    src={`concession/${item.img}` || "https://placehold.co/600x400"}
+                    src={
+                      `concession/${item.img}` || "https://placehold.co/600x400"
+                    }
                     alt={item.name}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
 
-                {/* Content */}
                 <div className="p-5 flex flex-col gap-2">
-                  <h2 className="text-xl font-bold text-white">
-                    {item.name}
-                  </h2>
+                  <h2 className="text-xl font-bold text-white">{item.name}</h2>
                   <p className="text-sm uppercase tracking-wide text-gray-400">
                     {item.category}
                   </p>
 
-                  {/* Sizes */}
                   {item.sizes && item.sizes.length > 0 ? (
                     <div className="mt-3 flex flex-col gap-2">
                       {item.sizes.map((size: FoodSize, index) => (
@@ -89,9 +83,7 @@ export default function FoodAndDrink() {
                           key={index}
                           className="flex justify-between items-center rounded-lg bg-gray-800 px-3 py-2 text-sm"
                         >
-                          <span className="text-gray-300">
-                            {size.size}
-                          </span>
+                          <span className="text-gray-300">{size.size}</span>
                           <span className="font-semibold text-red-500">
                             ${size.price.toFixed(2)}
                           </span>

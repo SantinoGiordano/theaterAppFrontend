@@ -32,7 +32,6 @@ export default function Contact() {
     <div className="min-h-screen bg-black flex items-center justify-center px-4">
       <div className="w-full max-w-md">
 
-        {/* Title */}
         <div className="text-center mb-10">
           <h1 className="text-4xl font-semibold text-white tracking-wide">
             Contact Us
@@ -40,7 +39,6 @@ export default function Contact() {
           <div className="mt-3 h-[2px] w-16 bg-red-600 mx-auto rounded-full" />
         </div>
 
-        {/* Card */}
         <div className="bg-neutral-900 border border-red-900/40 rounded-2xl p-8 shadow-xl">
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
 

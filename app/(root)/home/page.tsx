@@ -10,7 +10,7 @@ import Image from "next/image";
 export default function Home() {
   const [movies, setMovies] = useState([]);
   const [comingSoonMovies, setComingSoonMovies] = useState<ComingSoonMovie[]>(
-    []
+    [],
   );
   const [featured, setFeatured] = useState<FeaturedMovie[]>([]);
   const router = useRouter();
@@ -90,7 +90,6 @@ export default function Home() {
           </h1>
         </div>
       </div>
-      {/*--------Four Random Movies -----------*/}
       <section className="py-16 bg-black text-white">
         <h2 className="text-4xl font-bold text-center mb-10 text-red-600">
           🎥 Now Playing
@@ -161,7 +160,6 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Content */}
                 <div className="lg:w-1/2 p-8 lg:p-12">
                   <h3 className="text-3xl lg:text-4xl font-bold mb-6 text-white">
                     {movie.name}

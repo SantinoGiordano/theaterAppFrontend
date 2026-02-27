@@ -13,9 +13,7 @@ export default function LoginPage() {
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
-    setError(""); // clear previous errors
-
-    // FRONTEND VALIDATION
+    setError("");
     if (!form.email || !form.password) {
       setError("Please enter both email and password.");
       return;

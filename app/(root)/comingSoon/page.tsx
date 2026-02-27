@@ -20,7 +20,6 @@ export default function ComingSoon() {
     return () => clearInterval(interval);
   }, [movies.length]);
 
-  // Sync hash with slide
   useEffect(() => {
     if (movies.length > 0) {
       window.location.hash = `#slide${slide}`;
@@ -55,7 +54,6 @@ export default function ComingSoon() {
             >
               <div className="w-full flex flex-col items-center justify-center p-6">
                 <div className="relative w-full max-w-3xl mx-auto mt-8 text-center">
-                  {/* Glow effect */}
                   <div className="" />
 
                   <h2
