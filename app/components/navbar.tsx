@@ -9,13 +9,9 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Fixed Navbar */}
       <nav className="fixed top-0 left-0 w-full z-50 bg-white shadow-md h-20 flex items-center">
         <div className="max-w-7xl mx-auto px-4 w-full flex justify-between items-center">
-          {/* Logo / Title */}
           <div className="text-red-600 font-bold text-lg">Movies </div>
-
-          {/* Desktop Links */}
           <ul className="hidden md:flex gap-10 text-gray-600 font-medium">
             <li>
               <Link
@@ -73,7 +69,6 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Dropdown */}
         {isOpen && (
           <div className="md:hidden absolute top-20 left-0 w-full bg-white shadow-md border-t border-gray-200 flex flex-col items-center gap-6 py-6 z-40 text-gray-600 font-medium">
             <Link
