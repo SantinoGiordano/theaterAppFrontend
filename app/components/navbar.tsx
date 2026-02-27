@@ -36,14 +36,6 @@ export default function Navbar() {
             <li>
               <Link
                 className="hover:text-red-400 text-sm transition"
-                href="/myShowtimes"
-              >
-                My Showtimes
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="hover:text-red-400 text-sm transition"
                 href="/foodItems"
               >
                 Food & Drinks
