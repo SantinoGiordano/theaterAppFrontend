@@ -34,7 +34,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    async function featchFeaturedMovie() {
+    async function fetchFeaturedMovie() {
       const response = await fetch(`${API_Route}/api/featuredMovie`);
       const data = await response.json();
 
@@ -44,7 +44,7 @@ export default function Home() {
       setFeatured(data);
     }
 
-    featchFeaturedMovie();
+    fetchFeaturedMovie();
   }, []);
 
   return (
