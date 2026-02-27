@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@react-email/render": "^2.0.4",
     "daisy": "^0.1.7",
     "lucide-react": "^0.556.0",
     "next": "^16.1.6",
