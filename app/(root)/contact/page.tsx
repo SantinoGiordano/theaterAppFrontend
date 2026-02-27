@@ -49,7 +49,7 @@ export default function Contact() {
               placeholder="Name"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
-              className="input input-bordered bg-black border-neutral-700 focus:border-red-600 focus:outline-none"
+              className="text-white input input-bordered bg-black border-neutral-700 focus:border-red-600 focus:outline-none"
               required
             />
 
@@ -58,7 +58,7 @@ export default function Contact() {
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="input input-bordered bg-black border-neutral-700 focus:border-red-600 focus:outline-none"
+              className="text-white input input-bordered bg-black border-neutral-700 focus:border-red-600 focus:outline-none"
               required
             />
 
@@ -67,7 +67,7 @@ export default function Contact() {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               rows={4}
-              className="textarea textarea-bordered bg-black border-neutral-700 focus:border-red-600 focus:outline-none"
+              className="text-white textarea textarea-bordered bg-black border-neutral-700 focus:border-red-600 focus:outline-none"
               required
             />
 
