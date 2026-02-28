@@ -5,6 +5,7 @@ import { Movie } from "@/types/page";
 import { useEffect, useState, useMemo, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { API_Route } from "@/utils/routes";
 
 type Genre =
   | "Sci-Fi"
@@ -17,7 +18,6 @@ type Genre =
   | "Animation"
   | "Music";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
 
 export default function MovieListing() {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -46,7 +46,7 @@ export default function MovieListing() {
         setLoading(true);
         setError(null);
 
-        const response = await fetch(`${API_URL}/api/movies`);
+        const response = await fetch(`${API_Route}/api/movies`);
 
         if (!response.ok) {
           throw new Error(
