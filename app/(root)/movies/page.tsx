@@ -100,7 +100,7 @@ export default function MovieListing() {
     }
 
     try {
-      const res = await fetch(`${API_URL}/api/bookings`, {
+      const res = await fetch(`${API_Route}/api/bookings`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
