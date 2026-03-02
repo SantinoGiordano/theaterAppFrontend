@@ -1,9 +1,10 @@
 "use client";
 
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 
-export default function CheckoutPage() {
+function CheckoutContent() {
   const params = useSearchParams();
   const movie = params.get("movie");
   const time = params.get("time");
@@ -57,5 +58,13 @@ export default function CheckoutPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function CheckoutPage() {
+  return (
+    <Suspense fallback={<div className="text-white p-10">Loading...</div>}>
+      <CheckoutContent />
+    </Suspense>
   );
 }
