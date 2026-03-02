@@ -9,16 +9,6 @@ export default function ComingSoon() {
   const [slide, setSlide] = useState(1);
   const [movies, setMovies] = useState<ComingSoonMovie[]>([]);
 
-  // Auto-advance
-  useEffect(() => {
-    if (movies.length === 0) return;
-
-    const interval = setInterval(() => {
-      setSlide((prev) => (prev === movies.length ? 1 : prev + 1));
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [movies.length]);
 
   useEffect(() => {
     if (movies.length > 0) {
@@ -50,7 +40,7 @@ export default function ComingSoon() {
             <div
               key={movie._id}
               id={`slide${slideId}`}
-              className="carousel-item relative w-full bg-gray-900 bg-opacity-90 rounded-lg shadow-lg border border-red-700"
+              className="carousel-item relative w-full bg-black bg-opacity-90 rounded-lg shadow-lg border border-red-700"
             >
               <div className="w-full flex flex-col items-center justify-center p-6">
                 <div className="relative w-full max-w-3xl mx-auto mt-8 text-center">
